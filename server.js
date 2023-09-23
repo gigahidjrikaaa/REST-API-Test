@@ -18,6 +18,7 @@ app.use(express.json());
 
 // Routes
 const testRouter = require('./routes/test');
+app.use('/test', testRouter);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
