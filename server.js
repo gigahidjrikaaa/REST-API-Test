@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -10,6 +12,9 @@ db.once('open', () => console.log('Connected to Database'));
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
+
+// Middleware
+app.use(express.json());
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
