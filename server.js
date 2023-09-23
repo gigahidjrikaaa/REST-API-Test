@@ -16,6 +16,9 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(express.json());
 
+// Routes
+const testRouter = require('./routes/test');
+
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
