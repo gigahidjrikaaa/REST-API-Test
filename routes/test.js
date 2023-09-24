@@ -18,8 +18,18 @@ router.get('/:id', (req, res) => {
 });
 
 // Create one
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    const test = new Test({
+        name: req.body.name,
+        age: req.body.age
+    });
 
+    try {
+        const newTest = await test.save();
+        res.status(201).json(newTest);
+    } catch (err) {
+        res.status(400).json({message: err.message});
+    }
 });
 
 // Update one

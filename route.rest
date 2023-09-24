@@ -3,3 +3,15 @@ GET http://localhost:3000/test
 ###
 
 GET http://localhost:3000/test/16
+
+###
+
+POST http://localhost:3000/test
+Content-Type: application/json
+
+{
+    "name": "test",
+    "age": 16
+}
+
+###
