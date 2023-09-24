@@ -7,6 +7,7 @@ GET http://localhost:3000/test/65108f0db5e9b3508666baf6
 ###
 
 POST http://localhost:3000/test
+
 Content-Type: application/json
 
 {
@@ -26,6 +27,14 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/test/65109231cca0b4f876fed810
+DELETE http://localhost:3000/test/6510922fcca0b4f876fed80c
 
 ###
+
+PATCH http://localhost:3000/test/65109230cca0b4f876fed80e
+Content-Type: application/json
+
+{
+    "name": "testUPDATED",
+    "age": 30
+}

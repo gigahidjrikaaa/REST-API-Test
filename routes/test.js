@@ -34,7 +34,19 @@ router.post('/', async (req, res) => {
 
 // Update one
 router.patch('/:id', getTestData, async (req, res) => {
+    if (req.body.name != null) {
+        res.test.name = req.body.name;
+    }
+    if (req.body.age != null) {
+        res.test.age = req.body.age;
+    }
 
+    try {
+        const updatedTest = await res.test.save();
+        res.json(updatedTest);
+    } catch (err) {
+        res.status(400).json({message: err.message});
+    }
 });
 
 // Delete one
@@ -48,7 +60,6 @@ router.delete('/:id', getTestData, async (req, res) => {
 });
 
 async function getTestData(req, res, next) {
-    let test;
     try {
         test = await Test.findById(req.params.id);
         if (test == null) {
