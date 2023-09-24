@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {
 });
 
 // Get one
-router.get('/:id', (req, res) => {
-    res.send(req.params.id);
+router.get('/:id', getTestData, (req, res) => {
+    res.send(res.test.name + " " + res.test.age);
 });
 
 // Create one
@@ -41,5 +41,20 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
 
 });
+
+async function getTestData(req, res, next) {
+    let test;
+    try {
+        test = await Test.findById(req.params.id);
+        if (test == null) {
+            return res.status(404).json({message: 'Cannot find test'});
+        }
+    } catch (err) {
+        return res.status(500).json({message: err.message});
+    }
+
+    res.test = test;
+    next();
+}
 
 module.exports = router;
