@@ -1,9 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const Test = require('../models/test');
 
 // Get all
-router.get('/', (req, res) => {
-    res.send('Hello World!');
+router.get('/', async (req, res) => {
+    try {
+        const tests = await Test.find();
+        res.json(tests);
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
 });
 
 // Get one
