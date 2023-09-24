@@ -15,3 +15,17 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:3000/test
+Content-Type: application/json
+
+{
+    "name": "test2",
+    "age": 30
+}
+
+###
+
+DELETE http://localhost:3000/test/65109231cca0b4f876fed810
+
+###

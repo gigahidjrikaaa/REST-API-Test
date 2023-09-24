@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
 // Get one
 router.get('/:id', getTestData, (req, res) => {
-    res.send(res.test.name + " " + res.test.age);
+    res.send(res.test);
 });
 
 // Create one
@@ -33,13 +33,18 @@ router.post('/', async (req, res) => {
 });
 
 // Update one
-router.patch('/:id', (req, res) => {
+router.patch('/:id', getTestData, async (req, res) => {
 
 });
 
 // Delete one
-router.delete('/:id', (req, res) => {
-
+router.delete('/:id', getTestData, async (req, res) => {
+    try {
+        await res.test.deleteOne();
+        res.json({message: 'Deleted test'});
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
 });
 
 async function getTestData(req, res, next) {
